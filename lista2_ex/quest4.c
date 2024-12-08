@@ -87,21 +87,21 @@ void inserir(No **lista, int elemento) {
         atual = atual->prox;
     } while (atual != *lista);
 
-    novoNo->prox = atual;
-    novoNo->ant = atual->ant;
-    atual->ant->prox = novoNo;
-    atual->ant = novoNo;
+    novoNo->prox = atual;       // O ponteiro prox do novoNo aponta para para o atual
+    novoNo->ant = atual->ant;   // O ponteiro ant do novoNo aponta para o anterior 
+    atual->ant->prox = novoNo;  // O ponteiro prox do anterior aponta para o novoNo
+    atual->ant = novoNo;        // O ponteiro ant do atual aponta para o novoNo
 
-    if (atual == *lista && elemento < atual->elemento) {
-        *lista = novoNo;
+    // adiciona no inicio da lista
+    if (atual == *lista && elemento < atual->elemento) { // Se o atual for o inicio da lista e o elemento do novoNo for menor que o elemento do atual
+        *lista = novoNo;    // O inicio da lista será o novoNo
     }
 }
 
 // Função para remover um nó
 void deletar(No **lista, int elemento) {
-    if (!*lista) {
+    if (!*lista) { // Verifica se a lista está vazia
         printf("Lista vazia\n");
-        return;
     }
 
     No *atual = *lista;
@@ -111,7 +111,6 @@ void deletar(No **lista, int elemento) {
                 free(atual);
                 *lista = NULL;
                 printf("Elemento %d removido.\n", elemento);
-                return;
             }
 
             atual->ant->prox = atual->prox;

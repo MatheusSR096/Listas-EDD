@@ -85,21 +85,21 @@ void InserirTarefa(Tarefa** lista, int prioridade, const char* descricao) {
         free(novaTarefa);
         exit(1);
     }
-    novaTarefa->concluida = 0;
-    novaTarefa->prox = NULL;
-    novaTarefa->ant = NULL;
+    novaTarefa->concluida = 0; // Sempre inicia a nova Tarefa como pendente
+    novaTarefa->prox = NULL;   // O nó para a proxima tarefa com NULL
+    novaTarefa->ant = NULL;    // O nó para a tarefa anterior como NULL
 
     // Se a lista estiver vazia
     if (!*lista) {
-        *lista = novaTarefa;
+        *lista = novaTarefa; // A nova tarefa vai ser o inicio da lista
     } else {
-        Tarefa* atual = *lista;
-        Tarefa* anterior = NULL;
+        Tarefa* atual = *lista;     // Inicializa atual como inicio da lista
+        Tarefa* anterior = NULL;    // Inicializa anterior como NULL
 
         // Encontra a posição ordenada
-        while (atual && atual->prioridade < prioridade) {
-            anterior = atual;
-            atual = atual->prox;
+        while (atual && atual->prioridade < prioridade) { // Enquanto a prioridade do nó atual for menor que a prioridade
+            anterior = atual;   // O nó anterior será igual ao atual
+            atual = atual->prox;    // O nó atual será igual ao proximo
         }
         if (!anterior) { // Insere no início
             novaTarefa->prox = *lista;
