@@ -71,6 +71,7 @@ int main() {
     return 0;
 }
 
+// Função para adcionar uma nova tarefa
 void InserirTarefa(Tarefa** lista, int prioridade, const char* descricao) {
     Tarefa* novaTarefa = (Tarefa*)malloc(sizeof(Tarefa));
     if (!novaTarefa) {
@@ -102,22 +103,23 @@ void InserirTarefa(Tarefa** lista, int prioridade, const char* descricao) {
             atual = atual->prox;    // O nó atual será igual ao proximo
         }
         if (!anterior) { // Insere no início
-            novaTarefa->prox = *lista;
-            (*lista)->ant = novaTarefa;
-            *lista = novaTarefa;
+            novaTarefa->prox = *lista;      // A nova tarefa vai apontar para o inicio da lista
+            (*lista)->ant = novaTarefa;     // O ponteiro anterior do inicio da lista vai apontar para a novas tarefa
+            *lista = novaTarefa;            // O a nova tarefa agora é o inicio da lista
         } else if (!atual) { // Insere no final
-            anterior->prox = novaTarefa;
-            novaTarefa->ant = anterior;
+            anterior->prox = novaTarefa;    // O ponteiro prox da tarefa anterior aponta para nova tarefa
+            novaTarefa->ant = anterior;     // O ponteiro anterior da nova tarefa irá apontar para a tarefa anterior
         } else { // Insere no meio
-            novaTarefa->prox = atual;
-            novaTarefa->ant = anterior;
-            anterior->prox = novaTarefa;
-            atual->ant = novaTarefa;
+            novaTarefa->prox = atual;       // O ponteiro prox da nova tarefa aponta para atual
+            novaTarefa->ant = anterior;     // O ponteiro ant da nova tarefa aponta para anterior
+            anterior->prox = novaTarefa;    // O ponteiro prox do anterior aponta para nova tarefa
+            atual->ant = novaTarefa;        // O ponteiro ant da tarefa atual aponta para nova tarefa
         }
     }
     printf("Tarefa inserida com sucesso!\n");
 }
 
+// Função para listar tarefas concluidas
 void listarConcluidas(Tarefa** lista) {
     Tarefa* atual = *lista;
     int encontrou = 0;
@@ -135,6 +137,7 @@ void listarConcluidas(Tarefa** lista) {
     }
 }
 
+// Função para lisar tarefas pendentes
 void listarPendentes(Tarefa** lista) {
     Tarefa* atual = *lista;
     int encontrou = 0;
@@ -152,6 +155,7 @@ void listarPendentes(Tarefa** lista) {
     }
 }
 
+// Função para marcar tarefa como concluida
 void concluirTarefa(Tarefa** lista, int prioridade) {
     Tarefa* atual = *lista;
 
@@ -170,6 +174,7 @@ void concluirTarefa(Tarefa** lista, int prioridade) {
     printf("Tarefa com prioridade %d não encontrada.\n", prioridade);
 }
 
+// Função para liberar memoria da lista
 void liberarLista(Tarefa** lista) {
     Tarefa* atual = *lista;
     Tarefa* prox;

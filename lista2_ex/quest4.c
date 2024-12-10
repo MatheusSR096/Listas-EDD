@@ -106,25 +106,25 @@ void deletar(No **lista, int elemento) {
 
     No *atual = *lista;
     do {
-        if (atual->elemento == elemento) {
-            if (atual->prox == atual) {
-                free(atual);
-                *lista = NULL;
+        if (atual->elemento == elemento) { // Se o elemento do atual for igual ao elemento a ser deletado
+            if (atual->prox == atual) {  // Se o atual apontar para si memso
+                free(atual);    // Libera a memoria do atual
+                *lista = NULL;  // O inicio da lista agora é NULL
                 printf("Elemento %d removido.\n", elemento);
             }
 
-            atual->ant->prox = atual->prox;
-            atual->prox->ant = atual->ant;
+            atual->ant->prox = atual->prox; // O anterior vai apontar para o proximo do atual
+            atual->prox->ant = atual->ant;  // O anterior do proximo vai apontar para o anterior do atual
 
-            if (atual == *lista) {
-                *lista = atual->prox;
+            if (atual == *lista) { // Se o atual for igual ao inicio da lista
+                *lista = atual->prox; // O inicio da lista será o proximo do atual
             }
 
-            free(atual);
+            free(atual); // Libera a memoria do atual
             printf("Elemento %d removido.\n", elemento);
             return;
         }
-        atual = atual->prox;
+        atual = atual->prox; // Atualiza o atual
     } while (atual != *lista);
 
     printf("Elemento %d não encontrado.\n", elemento);
@@ -157,8 +157,8 @@ void listarDecrescente(No *lista) {
     printf("Lista em ordem decrescente: ");
     do {
         printf("%d <- ", atual->elemento);
-        atual = atual->ant;
-    } while (atual != lista->ant);
+        atual = atual->ant; // Inicio da lista apontando para o anterior
+    } while (atual != lista->ant); // Enquanto atual for diferente do inicio da lista apontando para o anterior 
     printf("\n");
 }
 
