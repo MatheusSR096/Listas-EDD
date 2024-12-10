@@ -1,3 +1,16 @@
+/* 4. Implemente em C duas listas circulares, cada nó com dois campos: dados (um inteiro) e bitR 
+(um indicador que pode ser 0 ou 1, do tipo char ou boolean). A primeira lista é a primária e a 
+segunda é a secundária. 
+O programa deve trocar um item da lista secundária por um da lista primária com base no 
+seguinte critério:
+ 1. Percorra os nós da lista primária até encontrar um nó com bitR = 0. Esse será o 
+candidato à troca;
+ 2. Se o bitR do nó visitado for 1, mova-o para o final da lista, ajustando bitR para 0.
+ 3. Após a troca, o item da lista primária assume a posição do item na secundária e vice
+versa;
+ 4. O item da lista secundária que ingressar na lista primária deve ter bitR ajustado para 
+1*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
